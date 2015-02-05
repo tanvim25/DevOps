@@ -1,24 +1,27 @@
 {
-  "name": "DevOps",
-  "version": "1.0.0",
-  "description": "DevOps project",
-  "main": "server.js",
-  "dependencies": {
-    "express": "^4.11.2"
-  },
-  "devDependencies": {},
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node server.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "https://github.com/tanvim25/DevOps.git"
-  },
-  "author": "Aniket Lawande <anlawande@gmail.com>",
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/tanvim25/DevOps/issues"
-  },
-  "homepage": "https://github.com/tanvim25/DevOps"
+	"name": "DevOps",
+	"version": "1.0.0",
+	"description": "DevOps project",
+	"main": "server.js",
+	"dependencies": {
+		"express": "^4.11.2"
+	},
+	"devDependencies": {
+		"grunt": "^0.4.0",
+		"grunt-contrib-less": "^1.0.0"
+	},
+	"scripts": {
+		"test": "echo \"Error: no test specified\" && exit 1",
+		"start": "node server.js"
+	},
+	"repository": {
+		"type": "git",
+		"url": "https://github.com/tanvim25/DevOps.git"
+	},
+	"author": "Aniket Lawande <anlawande@gmail.com>",
+	"license": "ISC",
+	"bugs": {
+		"url": "https://github.com/tanvim25/DevOps/issues"
+	},
+	"homepage": "https://github.com/tanvim25/DevOps"
 }
