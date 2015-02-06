@@ -29,7 +29,8 @@
   <builders>
     <hudson.tasks.Shell>
       <command>cd $WORKSPACE
-npm install</command>
+npm install
+node node_modules/grunt-cli/bin/grunt</command>
     </hudson.tasks.Shell>
   </builders>
   <publishers/>
