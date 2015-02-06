@@ -1,0 +1,44 @@
+@base: rgb(186, 209, 214);
+
+body {
+	margin: 0;
+	padding: 0;
+	font-family: 'Helvetica', 'Helvetica Nue';
+	font-size: 20px;
+	background-color: @base;
+}
+.banner {
+	padding: 50px 10px 20px 10px;
+	font-size: 2em;
+	border-bottom: 2px solid #84a1b5;
+}
+.float_center {
+	float: right;
+	position: relative;
+	left: -50%; /* or right 50% */
+	text-align: left;
+}
+.float_center > .child {
+	position: relative;
+	left: 50%;
+	float: left;
+	margin-right: 40px;
+}
+.float_center > .child:nth-child(1) {
+	margin-left: 0px;
+}
+.float_center > .child:nth-last-child(1) {
+	margin-right: 0;
+}
+.clearFix {
+	clear: both;
+}
+.creditsHolder {
+	background-color: darken(@base, 10%);
+	box-shadow: 0px 10px 10px rgba(0,0,0,0.2);
+}
+.credits {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	font-size: 1.4em;
+}
