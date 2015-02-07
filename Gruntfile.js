@@ -1,44 +1,44 @@
 module.exports = function(grunt) {
 
-  grunt.initConfig({
+	grunt.initConfig({
 
-	  less: 
-	  {
-	      development: 
-	      {
-	        options: 
-	        {
-	          compress: true,
-	          yuicompress: true,
-	          optimization: 2
-	        },
-	        files: 
-	        [{
-	  				expand: true,
-	  				cwd: "public",
-	  				src: "**/main.less",
-	  				dest: "public",
-	  				ext: ".css"
-	        }]
-	      }
-	  },
+		less: 
+		{
+			development: 
+			{
+				options: 
+				{
+					compress: true,
+					yuicompress: true,
+					optimization: 2
+				},
+				files: 
+				[{
+					expand: true,
+					cwd: "public",
+					src: "**/main.less",
+					dest: "public",
+					ext: ".css"
+				}]
+			}
+		},
 
-	  clean: {
-   		 folder: "public/main.css", folder: "public/main.min.js",
- 		 },
+		clean: {
+			files: ["public/main.css", "public/main.min.js"],
+		},
 
- 	 uglify:{
+		uglify:{
 			files: {
-				  src: "public/main.js",
-				  dest: "public/main.min.js"
-				}
-	  
+				src: "public/main.js",
+				dest: "public/main.min.js"
+			}
+
 		}
 
-  });
+	});
 
-  // This will automatically load any grunt plugin you install, such as grunt-contrib-less.
-  //require('load-grunt-tasks')(grunt);
+	// This will automatically load any grunt plugin you install, such as grunt-contrib-less.
+	//require('load-grunt-tasks')(grunt);
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
