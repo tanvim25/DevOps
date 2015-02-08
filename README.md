@@ -28,9 +28,12 @@ npm install
 node node_modules/grunt-cli/bin/grunt
 ```
 
-We configured the master node in Jenkins to delegate tasks to a slave node. 
+We configured the master node in Jenkins to delegate tasks to a slave node.
+![Master-Config](https://raw.githubusercontent.com/tanvim25/DevOps/master/pics/Master-Slave.jpg)
+![Slave](https://raw.githubusercontent.com/tanvim25/DevOps/master/pics/Slave.jpg)
 
 The build reports are available through following url:
 http://localhost:8080/job/DevOps/1/
 
 [Example output](https://raw.githubusercontent.com/tanvim25/DevOps/master/jenkins.out)
+![Build output](https://raw.githubusercontent.com/tanvim25/DevOps/master/pics/Build.jpg)
