@@ -32,7 +32,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	# Every Vagrant virtual environment requires a box to build off of.
 	config.vm.define "Master" do |node|
 		node.vm.box = "hashicorp/precise32"
-		node.vm.network "public_network"
+		#node.vm.network "public_network"
 		node.vm.network "private_network", ip: "172.16.1.3"
 		node.vm.network "forwarded_port", guest: 8080, host: 8080
 		node.vm.provision "shell",
@@ -41,7 +41,7 @@ Vagrant.configure(VAGRANTFILE_API_VERSION) do |config|
 	end
 	config.vm.define "Slave" do |node|
 		node.vm.box = "hashicorp/precise32"
-		node.vm.network "public_network"
+		#node.vm.network "public_network"
 		node.vm.network "private_network", ip: "172.16.1.2"
 	end
 
