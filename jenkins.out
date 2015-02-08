@@ -1,0 +1,103 @@
+Started by user anonymous
+Building in workspace /home/vagrant/.jenkins/jobs/DevOps/workspace
+Cloning the remote Git repository
+Cloning repository file:///vagrant
+ > git init /home/vagrant/.jenkins/jobs/DevOps/workspace # timeout=10
+Fetching upstream changes from file:///vagrant
+ > git --version # timeout=10
+ > git -c core.askpass=true fetch --tags --progress file:///vagrant +refs/heads/*:refs/remotes/origin/*
+ > git config remote.origin.url file:///vagrant # timeout=10
+ > git config --add remote.origin.fetch +refs/heads/*:refs/remotes/origin/* # timeout=10
+ > git config remote.origin.url file:///vagrant # timeout=10
+Fetching upstream changes from file:///vagrant
+ > git -c core.askpass=true fetch --tags --progress file:///vagrant +refs/heads/*:refs/remotes/origin/*
+ > git rev-parse refs/remotes/origin/develop^{commit} # timeout=10
+ > git rev-parse refs/remotes/origin/origin/develop^{commit} # timeout=10
+Checking out Revision 23d44bb8ad5bab3e801e90fb06e77051c5b58e4d (refs/remotes/origin/develop)
+ > git config core.sparsecheckout # timeout=10
+ > git checkout -f 23d44bb8ad5bab3e801e90fb06e77051c5b58e4d
+ > git rev-list 23d44bb8ad5bab3e801e90fb06e77051c5b58e4d # timeout=10
+[workspace] $ /bin/sh -xe /tmp/hudson4174212720692083334.sh
++ cd /home/vagrant/.jenkins/jobs/DevOps/workspace
++ npm install
+npm WARN package.json DevOps@1.0.0 No README data
+grunt-contrib-clean@0.6.0 node_modules/grunt-contrib-clean
+âââ rimraf@2.2.8
+
+express@4.11.2 node_modules/express
+âââ merge-descriptors@0.0.2
+âââ utils-merge@1.0.0
+âââ methods@1.1.1
+âââ cookie@0.1.2
+âââ fresh@0.2.4
+âââ escape-html@1.0.1
+âââ range-parser@1.0.2
+âââ cookie-signature@1.0.5
+âââ finalhandler@0.3.3
+âââ vary@1.0.0
+âââ media-typer@0.3.0
+âââ parseurl@1.3.0
+âââ serve-static@1.8.1
+âââ content-disposition@0.5.0
+âââ path-to-regexp@0.1.3
+âââ depd@1.0.0
+âââ qs@2.3.3
+âââ on-finished@2.2.0 (ee-first@1.1.0)
+âââ debug@2.1.1 (ms@0.6.2)
+âââ etag@1.5.1 (crc@3.2.1)
+âââ proxy-addr@1.0.6 (forwarded@0.1.0, ipaddr.js@0.1.8)
+âââ send@0.11.1 (destroy@1.0.3, ms@0.7.0, mime@1.2.11)
+âââ accepts@1.2.3 (negotiator@0.5.0, mime-types@2.0.8)
+âââ type-is@1.5.6 (mime-types@2.0.8)
+
+grunt-cli@0.1.13 node_modules/grunt-cli
+âââ resolve@0.3.1
+âââ nopt@1.0.10 (abbrev@1.0.5)
+âââ findup-sync@0.1.3 (glob@3.2.11, lodash@2.4.1)
+
+grunt-contrib-uglify@0.7.0 node_modules/grunt-contrib-uglify
+âââ uri-path@0.0.2
+âââ chalk@0.5.1 (escape-string-regexp@1.0.2, ansi-styles@1.1.0, supports-color@0.2.0, has-ansi@0.1.0, strip-ansi@0.3.0)
+âââ uglify-js@2.4.16 (uglify-to-browserify@1.0.2, async@0.2.10, optimist@0.3.7, source-map@0.1.34)
+âââ maxmin@1.0.0 (figures@1.3.5, pretty-bytes@1.0.2, gzip-size@1.0.0)
+âââ lodash@2.4.1
+
+grunt@0.4.5 node_modules/grunt
+âââ which@1.0.8
+âââ dateformat@1.0.2-1.2.3
+âââ eventemitter2@0.4.14
+âââ getobject@0.1.0
+âââ colors@0.6.2
+âââ async@0.1.22
+âââ grunt-legacy-util@0.2.0
+âââ hooker@0.2.3
+âââ rimraf@2.2.8
+âââ exit@0.1.2
+âââ nopt@1.0.10 (abbrev@1.0.5)
+âââ minimatch@0.2.14 (sigmund@1.0.0, lru-cache@2.5.0)
+âââ glob@3.1.21 (inherits@1.0.0, graceful-fs@1.2.3)
+âââ lodash@0.9.2
+âââ coffee-script@1.3.3
+âââ underscore.string@2.2.1
+âââ iconv-lite@0.2.11
+âââ js-yaml@2.0.5 (argparse@0.1.16, esprima@1.0.4)
+âââ grunt-legacy-log@0.1.1 (underscore.string@2.3.3, lodash@2.4.1)
+âââ findup-sync@0.1.3 (glob@3.2.11, lodash@2.4.1)
+
+grunt-contrib-less@1.0.0 node_modules/grunt-contrib-less
+âââ async@0.9.0
+âââ chalk@0.5.1 (escape-string-regexp@1.0.2, ansi-styles@1.1.0, supports-color@0.2.0, has-ansi@0.1.0, strip-ansi@0.3.0)
+âââ lodash@2.4.1
+âââ less@2.4.0 (graceful-fs@3.0.5, mime@1.3.4, image-size@0.3.5, source-map@0.2.0, mkdirp@0.5.0, promise@6.1.0, errno@0.1.1, request@2.53.0)
++ node node_modules/grunt-cli/bin/grunt
+[4mRunning "clean:files" (clean) task[24m
+[32m>> [39m1 path cleaned.
+
+[4mRunning "less:development" (less) task[24m
+File public/main.css created
+
+[4mRunning "uglify:files" (uglify) task[24m
+[32m>> [39m1 file created.
+
+[32mDone, without errors.[39m
+Finished: SUCCESS
