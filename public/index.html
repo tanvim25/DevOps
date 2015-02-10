@@ -4,7 +4,7 @@
   <link rel="stylesheet" href="main.css">
   <!--link rel="stylesheet" href="node_modules/bootstrap/dist/css/bootstrap.min.css" media="screen"-->
   <script src="lib/angular.min.js"></script>
-  <script src="lib/angular-route.min.js"></script>
+  <script type="text/javascript" src="MyTrie/trie-browser.js"></script>
   <script src="main.min.js"></script>
 </head>
 <body ng-app="app">
@@ -27,7 +27,15 @@
 				<li>Jenkins</li>
 				<li>Grunt</li>
 			</ul>
-			<div class="view" ng-view=""></div>
+			
+			<div class="omniBoxContainer" ng-controller="autoCompleteCtrl">
+				<div class="omniBox">
+					<input type="text" ng-model="text" placeholder="This is an autocomplete box"></input>
+				</div>
+				<div class="results">
+					<div class="result" ng-repeat="result in results" ng-bind="result"></div>
+				</div>
+			</div>
 		</div>
 	</div>
 </body>
