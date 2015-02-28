@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="5.2.3" timestamp="2015-02-28T17:59:09.403">
+<file name="/vagrant/project/DevOps/public/subject.js">
+<violation beginline="29" endline="29" begincolumn="3" endcolumn="15" rule="UnreachableCode" ruleset="Basic Ecmascript" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-javascript/rules/ecmascript/basic.html#UnreachableCode" priority="1">
+A 'return', 'break', 'continue', or 'throw' statement should be the last in a block.
+</violation>
+<violation beginline="69" endline="69" begincolumn="1" endcolumn="27" rule="GlobalVariable" ruleset="Basic Ecmascript" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-javascript/rules/ecmascript/basic.html#GlobalVariable" priority="1">
+Avoid using global variables
+</violation>
+<violation beginline="70" endline="70" begincolumn="1" endcolumn="29" rule="GlobalVariable" ruleset="Basic Ecmascript" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-javascript/rules/ecmascript/basic.html#GlobalVariable" priority="1">
+Avoid using global variables
+</violation>
+<violation beginline="71" endline="71" begincolumn="1" endcolumn="23" rule="GlobalVariable" ruleset="Basic Ecmascript" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-javascript/rules/ecmascript/basic.html#GlobalVariable" priority="1">
+Avoid using global variables
+</violation>
+<violation beginline="72" endline="72" begincolumn="1" endcolumn="17" rule="GlobalVariable" ruleset="Basic Ecmascript" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-javascript/rules/ecmascript/basic.html#GlobalVariable" priority="1">
+Avoid using global variables
+</violation>
+<violation beginline="73" endline="73" begincolumn="1" endcolumn="41" rule="GlobalVariable" ruleset="Basic Ecmascript" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-javascript/rules/ecmascript/basic.html#GlobalVariable" priority="1">
+Avoid using global variables
+</violation>
+</file>
+</pmd>
