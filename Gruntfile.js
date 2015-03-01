@@ -33,6 +33,16 @@ module.exports = function(grunt) {
 				dest: "public/main.min.js"
 			}
 
+		},
+
+		jasmine : {
+			// Your project's source files
+			src : ['public/main.js', 'public/MyTrie/trie-browser.js'],
+			options: {
+				vendor: ['public/lib/angular.min.js', 'test/jasmine-2.1.3/angular-mocks.js'],
+				// Your Jasmine spec files
+				specs : 'test/autocomplete.js',
+			}
 		}
 
 	});
@@ -42,6 +52,7 @@ module.exports = function(grunt) {
 	grunt.loadNpmTasks('grunt-contrib-less');
 	grunt.loadNpmTasks('grunt-contrib-clean');
 	grunt.loadNpmTasks('grunt-contrib-uglify');
+	grunt.loadNpmTasks('grunt-contrib-jasmine');
 	grunt.registerTask('build_all', ['clean','less','uglify']);
 	grunt.registerTask("default", ["build_all"]);
 };
