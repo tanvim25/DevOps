@@ -1,6 +1,9 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<pmd version="5.2.3" timestamp="2015-02-28T17:59:09.403">
+<pmd version="5.2.3" timestamp="2015-03-03T00:47:22.325">
 <file name="/vagrant/project/DevOps/public/subject.js">
+<violation beginline="4" endline="5" begincolumn="5" endcolumn="11" rule="IfStmtsMustUseBraces" ruleset="Braces" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-javascript/rules/ecmascript/braces.html#IfStmtsMustUseBraces" priority="3">
+Avoid using if statements without curly braces
+</violation>
 <violation beginline="29" endline="29" begincolumn="3" endcolumn="15" rule="UnreachableCode" ruleset="Basic Ecmascript" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-javascript/rules/ecmascript/basic.html#UnreachableCode" priority="1">
 A 'return', 'break', 'continue', or 'throw' statement should be the last in a block.
 </violation>
