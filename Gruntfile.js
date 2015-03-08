@@ -70,6 +70,23 @@ module.exports = function(grunt) {
 						]
 					}
 				}
+			},
+			
+			istanbul_fuzzing: {
+				src: '<%= jasmine.fuzzing.src %>',
+				options: {
+					vendor: '<%= jasmine.fuzzing.options.vendor %>',
+					specs: '<%= jasmine.fuzzing.options.specs %>',
+					template: require('grunt-template-jasmine-istanbul'),
+					templateOptions: {
+						coverage: 'coverage/json/coverage.json',
+						report: [
+							{type: 'html', options: {dir: 'coverage/html'}},
+							{type: 'text-summary'},
+							{type: 'json-summary'}
+						]
+					}
+				}
 			}
 		},
 
