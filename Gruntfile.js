@@ -38,7 +38,7 @@ module.exports = function(grunt) {
 		jasmine : {
 			// Your project's source files
 			all : {
-				src : ['public/main.js'],
+				src : ['public/MyTrie/trie.js', 'public/main.js'],
 				options: {
 					vendor: ['public/lib/angular.min.js', 'test/jasmine-2.1.3/angular-mocks.js', 'public/MyTrie/trie-browser.js'],
 					// Your Jasmine spec files
