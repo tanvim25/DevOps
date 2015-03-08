@@ -1,14 +1,22 @@
 #!/bin/sh
 
-# run script to check if commit is valid
-# you can run anything here, I happen to use a node script
-node node_modules\\grunt-cli\\bin\\grunt jasmine
+node node_modules\\grunt-cli\\bin\\grunt jasmine:all
 RETVAL=$?
 
 if [ $RETVAL -ne 0 ]
 then
-  echo ""
   echo "Tests failed!"
+  echo "ABORTING commmit!"
+  exit 1
+fi
+
+node node_modules\\grunt-cli\\bin\\grunt jasmine:istanbul
+node gitHooks\\check-coverage.js
+RETVAL=$?
+if [ $RETVAL -ne 0 ]
+then
+  echo ""
+  echo "Coverage failed!"
   echo "ABORTING commmit!"
   exit 1
 fi
