@@ -45,6 +45,15 @@ module.exports = function(grunt) {
 					specs : 'test/autocomplete.js',
 				},
 			},
+			
+			fuzzing : {
+				src : ['public/MyTrie/trie.js', 'public/main.js'],
+				options: {
+					vendor: ['public/lib/angular.min.js', 'test/jasmine-2.1.3/angular-mocks.js', 'public/MyTrie/trie-browser.js'],
+					// Your Jasmine spec files
+					specs : 'test/test-fuzzing.js',
+				},
+			},
 
 			istanbul: {
 				src: '<%= jasmine.all.src %>',
