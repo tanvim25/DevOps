@@ -24,4 +24,11 @@ describe("Testing autocomplete feature", function() {
 		$controller('autoCompleteCtrl', { $scope: scope});
 		expect(scope.trie.lookup("a").length).toEqual(2);
 	});
+	
+	it("Should check if the text is changed", function() {
+		$controller('autoCompleteCtrl', { $scope: scope});
+		scope.text = "a";
+		scope.$digest();
+		expect(scope.results.length).toEqual(2);
+	});
 });
