@@ -56,7 +56,7 @@ module.exports = function(grunt) {
 						coverage: 'coverage/json/coverage.json',
 						report: [
 							{type: 'html', options: {dir: 'coverage/html'}},
-							{type: 'text-summary'}
+							{type: 'json-summary'}
 						]
 					}
 				}
