@@ -69,6 +69,7 @@ module.exports = function(grunt) {
 
 	grunt.registerTask("initHooks", function() {
 		grunt.file.copy("./gitHooks/pre-commit", "./.git/hooks/pre-commit");
+		grunt.file.copy("./gitHooks/post-commit", "./.git/hooks/post-commit");
 	});
 
 	// This will automatically load any grunt plugin you install, such as grunt-contrib-less.
