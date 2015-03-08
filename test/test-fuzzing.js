@@ -8,16 +8,18 @@ describe("Testing autocomplete feature", function() {
 	beforeEach(inject(function(_$controller_, $rootScope){
 		$controller = _$controller_;
 		scope = $rootScope.$new();
+		$controller('autoCompleteCtrl', { $scope: scope});
+		var initialSeed = scope.trie.top(20);
+		scope.trie.wipe();
+		for(var i = 0; i < initialSeed.length; i++)
+			scope.trie.add(fuzzer.mutate.string(initialSeed[i]));
 	}));
 	
 	it("Number in trie", function() {
-		$controller('autoCompleteCtrl', { $scope: scope});
-		console.log(scope.trie.top(20));
 		expect(scope.trie.count).toEqual(12);
 	});
 
 	it("Should lookup 1 entry", function() {
-		$controller('autoCompleteCtrl', { $scope: scope});
 		expect(scope.trie.lookup("De").length).toEqual(1);
 	});
 
@@ -27,7 +29,6 @@ describe("Testing autocomplete feature", function() {
 	});
 
 	it("Should check if the text is changed", function() {
-		$controller('autoCompleteCtrl', { $scope: scope});
 		scope.text = "a";
 		scope.$digest();
 		expect(scope.results.length).toEqual(2);
