@@ -1,4 +1,4 @@
-#!/bin/sh
+#!/bin/bash
 if [ `git rev-parse --abbrev-ref HEAD` == "develop" ]; then
    curl http://localhost:8080/job/DevOps/build
 fi
