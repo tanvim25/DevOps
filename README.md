@@ -20,7 +20,7 @@ We are using **npm** for dependency management and **grunt** for managing variou
 By initiating a GET request to this url, Jenkins will initiate a build on the devops job.
 
 #### Job configurations:
-We have configured this job to perform followng commands:
+We have configured this job to perform following commands:
 
 1. Clone from local git repository(Git plugin).
 2. Install packages using npm.
@@ -118,3 +118,68 @@ A precommit hook prevents a commit from taking place based on some criteria. In 
 There is a simple post-commit hook to check if the current branch is the develop branch and to initiate a GET request to the local jenkins url for the project so that a build will be triggered.
 
 [Post-commit hook](https://github.com/tanvim25/DevOps/blob/master/gitHooks/post-commit)
+
+
+##Analysis
+#### Integration with Static Analysis Tool: ###
+
+We have integrated our application with [PMD](http://pmd.sourceforge.net/), which is a source code analyzer designed to run static analysis on the source code provided. 
+We are using PMD to run static analysis on the JavaScript code present in our application. The files which are analyzed by PMD are:
+
+
+- /public/main.js
+- /public/MyTrie/trie.js
+
+
+#### Customizing rule set: ###
+PMD provides default rule sets which can be used to analyze your application's source code. We have selected the rules which are more relevant to our application. Also some of the rules have been modified to better suit our requirements. eg. We have reduced the priority of the rule "GlobalVariable" to 3 and customized the error message.
+
+    <rule
+		ref="rulesets/ecmascript/basic.xml/GlobalVariable"
+		message="Use of global variables should be avoided">
+		<priority>3</priority>
+	</rule>
+
+We have also added a new rule using XPath which checks that number of arguments passed to the function lookup() are no less than 3.
+
+    	<rule name="CheckParamsOfLookupFunction"
+        message="Always provide 3 parameters when using lookup() functions"
+        language="ecmascript" since="5.0.1"
+        class="net.sourceforge.pmd.lang.rule.XPathRule">
+		<description>TODO</description>
+		<priority>2</priority>
+    	<properties>
+     	<property name="xpath">
+      	<value><![CDATA[
+		//FunctionCall/Name[
+		 @Image = 'lookup'
+		 and
+		 count(../*) < 3
+		]
+		]]></value>
+		</property>
+		</properties>
+		<example>
+		<![CDATA[
+		lookup(abc);
+		]]>
+		</example>
+		</rule>
+
+The new rule set containing above changes is defined in [Custom.xml](https://github.com/tanvim25/DevOps/custom.xml) file.
+####Integration with Jenkins ###
+We have configured the Jenkins job to run a PMD analysis on the checked-in code. The report is stored in an xml format in pmd.xml file.
+
+    
+	 ./public/lib/pmd-bin-5.2.3/bin/run.sh pmd -d $WORKSPACE/public/main.js,$WORKSPACE/public/MyTrie/trie.js -f xml -R rulesets/ecmascript/custom.xml -language javascript > pmd.xml
+
+Jenkins has a [Static Analysis Collector PMD plugin](https://wiki.jenkins-ci.org/display/JENKINS/PMD+Plugin)  which analyzes the report generated (pmd.xml) generated and publishes the findings on  the GUI.
+
+![PMD results](https://github.com/tanvim25/DevOps/blob/master/pics/pmd1.JPG)
+
+![PMD results](https://github.com/tanvim25/DevOps/blob/master/pics/pmd2.JPG)
+
+#### Rejecting a commit: ###
+Using the PMD plug-in, we have configured our Devops job to fail if more than 1 high priority errors are reported by PMD. These values are configurable based on the priorities of the errors and warnings.
+
+![Jenkins-PMD](https://github.com/tanvim25/DevOps/blob/master/pics/jenkins-gate.JPG)
