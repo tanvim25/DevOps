@@ -15,8 +15,8 @@ app.controller("autoCompleteCtrl", ["$scope", function($scope){
 	$scope.trie.add("Sinatra");
 	$scope.trie.add("Trance");
 	$scope.trie.add("Some more text");
-	
 	$scope.$watch('text', function(newVal) {
 		$scope.results = $scope.trie.lookup(newVal);
 	});
+	Trie();
 }]);

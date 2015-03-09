@@ -19,19 +19,19 @@
 	</rule>
 	<!-- New rule which makes sure that lookup() function takes no less than 3 parameters -->
 	
-	<rule name="CheckParamsOfLookupFunction"
-        message="Always provide 3 parameters when using lookup() functions"
+	<rule name="CheckParamsOfTrieFunction"
+        message="Provide 1 parameter when using Trie() function"
         language="ecmascript" since="5.0.1"
         class="net.sourceforge.pmd.lang.rule.XPathRule">
-	<description>lookup() function takes no less than 3 parameters</description>
+	<description>trie() function takes no less than 2 parameters</description>
 	<priority>2</priority>
     <properties>
       <property name="xpath">
       <value><![CDATA[
 		//FunctionCall/Name[
-		 @Image = 'lookup'
+		 @Image = 'Trie'
 		 and
-		 count(../*) < 3
+		 count(../*) <2
 		]
 		]]></value>
 		</property>
