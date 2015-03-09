@@ -54,7 +54,7 @@ http://localhost:8080/job/DevOps/1/
 
 ## Test
 #### Unit testing - Jasmine
-For unit testing our javascript code, we are using the jasmine test framework. Writing tests in javascript and running them using a combination of *grunt* and *phantomjs*. The phantomjs environment allows for automated headless execution of javascript.
+For unit testing our javascript code, we are using the [jasmine](http://jasmine.github.io/edge/introduction.html) test framework. Writing tests in javascript and running them using a combination of *grunt* and *phantomjs*. The phantomjs environment allows for automated headless execution of javascript.
 
 We are testing against the [trie](https://github.com/tanvim25/DevOps/blob/master/public/MyTrie/trie.js) library as well as the main application code that uses it.
 
@@ -67,3 +67,31 @@ options: {
 	specs : 'test/autocomplete.js',
 },
 ```
+
+#### Coverage Istanbul
+To provide coverage reports over the code, we are using [istanbul](https://github.com/gotwarlost/istanbul).
+It provides statement, function and branch coverage and works with jasmine.
+
+We have extended the jasmine task to include coverage by istanbul
+```javascript
+istanbul: {
+	src: '<%= jasmine.all.src %>',
+	options: {
+		vendor: '<%= jasmine.all.options.vendor %>',
+		specs: '<%= jasmine.all.options.specs %>',
+		template: require('grunt-template-jasmine-istanbul'),
+		templateOptions: {
+			coverage: 'coverage/json/coverage.json',
+			report: [
+				{type: 'html', options: {dir: 'coverage/html'}},
+				{type: 'text-summary'},
+				{type: 'json-summary'}
+			]
+		}
+	}
+},
+```
+
+*Sample output*
+
+![Coverage output](https://raw.githubusercontent.com/tanvim25/DevOps/master/pics/Coverage.jpg)
