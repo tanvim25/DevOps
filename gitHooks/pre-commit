@@ -1,6 +1,6 @@
 #!/bin/sh
 
-node node_modules\\grunt-cli\\bin\\grunt jasmine:all
+node node_modules/grunt-cli/bin/grunt jasmine:all
 RETVAL=$?
 
 if [ $RETVAL -ne 0 ]
@@ -10,8 +10,8 @@ then
   exit 1
 fi
 
-node node_modules\\grunt-cli\\bin\\grunt jasmine:istanbul
-node gitHooks\\check-coverage.js
+node node_modules/grunt-cli/bin/grunt jasmine:istanbul
+node gitHooks/check-coverage.js
 RETVAL=$?
 if [ $RETVAL -ne 0 ]
 then
