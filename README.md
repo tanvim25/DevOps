@@ -68,7 +68,7 @@ options: {
 },
 ```
 
-#### Coverage Istanbul
+#### Coverage - Istanbul
 To provide coverage reports over the code, we are using [istanbul](https://github.com/gotwarlost/istanbul).
 It provides statement, function and branch coverage and works with jasmine.
 
