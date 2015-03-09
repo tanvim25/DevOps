@@ -95,3 +95,10 @@ istanbul: {
 *Sample output*
 
 ![Coverage output](https://raw.githubusercontent.com/tanvim25/DevOps/master/pics/Coverage.jpg)
+
+#### Fuzzing
+To improve testing coverage with automation we used fuzzing. We implemented this by taking the initial seed of strings stored in the autocomplete data structure and fuzzing (mutating) them in random ways. The mutated strings were then provided as inputs to the tests. This approach improved the coverage count significantly as many paths that weren't covered before began to be visited now.
+
+[Fuzzing test cases](https://github.com/tanvim25/DevOps/blob/master/test/test-fuzzing.js)
+
+![Fuzzing Coverage output](https://raw.githubusercontent.com/tanvim25/DevOps/master/pics/Fuzzing%20Coverage.png)
