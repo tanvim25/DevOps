@@ -50,3 +50,20 @@ http://localhost:8080/job/DevOps/1/
 [Example output](https://raw.githubusercontent.com/tanvim25/DevOps/master/jenkins.out)
 
 ![Build output](https://raw.githubusercontent.com/tanvim25/DevOps/master/pics/Build.jpg)
+
+
+## Test
+#### Unit testing - Jasmine
+For unit testing our javascript code, we are using the jasmine test framework. Writing tests in javascript and running them using a combination of *grunt* and *phantomjs*. The phantomjs environment allows for automated headless execution of javascript.
+
+We are testing against the [trie](https://github.com/tanvim25/DevOps/blob/master/public/MyTrie/trie.js) library as well as the main application code that uses it.
+
+A grunt task has been written which executes jasmine test cases using phantomjs.
+```javascsript
+src : ['public/MyTrie/trie.js', 'public/main.js'],
+options: {
+	vendor: ['public/lib/angular.min.js', 'test/jasmine-2.1.3/angular-mocks.js', 'public/MyTrie/trie-browser.js'],
+	// Your Jasmine spec files
+	specs : 'test/autocomplete.js',
+},
+```
