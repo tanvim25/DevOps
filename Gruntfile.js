@@ -24,7 +24,7 @@ module.exports = function(grunt) {
 		},
 
 		clean: {
-			files: ["public/main.css", "public/main.min.js"],
+			files: ["public/main.css", "public/main.min.js", "pmd.xml"],
 		},
 
 		uglify:{
