@@ -103,6 +103,22 @@ To improve testing coverage with automation we used fuzzing. We implemented this
 
 ![Fuzzing Coverage output](https://raw.githubusercontent.com/tanvim25/DevOps/master/pics/Fuzzing%20Coverage.png)
 
+## Git Hooks
+The hooks are in the [gitHooks](https://github.com/tanvim25/DevOps/tree/master/gitHooks) directory. To copy the hooks to the .git/ directory, copy them manually or run the following command
+```script
+grunt initHooks
+```
+
+#### Pre-commit
+A precommit hook prevents a commit from taking place based on some criteria. In our project we have used the unit test outputs by *jasmine*, coverage by *istanbul* and static code anaylsis by *pmd* to decide criteria for rejection of the commit. The scripts to anaylse the coverage and analysis reports are in the gitHooks directory as well. They are invoked by the pre-commit script and their exit code determines the success/failure of the pre-commit process.
+
+[Pre-commit hook](https://github.com/tanvim25/DevOps/blob/master/gitHooks/pre-commit)
+
+#### Post-commit
+There is a simple post-commit hook to check if the current branch is the develop branch and to initiate a GET request to the local jenkins url for the project so that a build will be triggered.
+
+[Post-commit hook](https://github.com/tanvim25/DevOps/blob/master/gitHooks/post-commit)
+
 ##Analysis
 #### Integration with Static Analysis Tool: ###
 
@@ -150,19 +166,3 @@ Jenkins has a [Static Analysis Collector PMD plugin](https://wiki.jenkins-ci.org
 Using the PMD plug-in, we have configured our Devops job to fail if more than 1 high priority errors are reported by PMD. These values are configurable based on the priorities of the errors and warnings.
 
 ![Jenkins-PMD](https://github.com/tanvim25/DevOps/blob/master/pics/jenkins-gate.JPG)
-
-## Git Hooks
-The hooks are in the [gitHooks](https://github.com/tanvim25/DevOps/tree/master/gitHooks) directory. To copy the hooks to the .git/ directory, copy them manually or run the following command
-```script
-grunt initHooks
-```
-
-#### Pre-commit
-A precommit hook prevents a commit from taking place based on some criteria. In our project we have used the unit test outputs by *jasmine*, coverage by *istanbul* and static code anaylsis by *pmd* to decide criteria for rejection of the commit. The scripts to anaylse the coverage and analysis reports are in the gitHooks directory as well. They are invoked by the pre-commit script and their exit code determines the success/failure of the pre-commit process.
-
-[Pre-commit hook](https://github.com/tanvim25/DevOps/blob/master/gitHooks/pre-commit)
-
-#### Post-commit
-There is a simple post-commit hook to check if the current branch is the develop branch and to initiate a GET request to the local jenkins url for the project so that a build will be triggered.
-
-[Post-commit hook](https://github.com/tanvim25/DevOps/blob/master/gitHooks/post-commit)
