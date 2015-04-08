@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<pmd version="5.2.3" timestamp="2015-03-03T02:24:54.253">
+<file name="/vagrant/project/DevOps/public/subject.js">
+<violation beginline="4" endline="4" begincolumn="12" endcolumn="17" rule="UnnecessaryParentheses" ruleset="Unnecessary" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-javascript/rules/ecmascript/unnecessary.html#UnnecessaryParentheses" priority="4">
+Unnecessary parentheses.
+</violation>
+<violation beginline="14" endline="16" begincolumn="4" endcolumn="4" rule="UnnecessaryBlock" ruleset="Unnecessary" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-javascript/rules/ecmascript/unnecessary.html#UnnecessaryBlock" priority="4">
+Custom - Avoid unnecessary blocks
+</violation>
+<violation beginline="35" endline="35" begincolumn="3" endcolumn="15" rule="UnreachableCode" ruleset="Basic Ecmascript" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-javascript/rules/ecmascript/basic.html#UnreachableCode" priority="1">
+A 'return', 'break', 'continue', or 'throw' statement should be the last in a block.
+</violation>
+<violation beginline="75" endline="75" begincolumn="1" endcolumn="27" rule="GlobalVariable" ruleset="Basic Ecmascript" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-javascript/rules/ecmascript/basic.html#GlobalVariable" priority="1">
+Avoid using global variables
+</violation>
+<violation beginline="76" endline="76" begincolumn="1" endcolumn="29" rule="GlobalVariable" ruleset="Basic Ecmascript" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-javascript/rules/ecmascript/basic.html#GlobalVariable" priority="1">
+Avoid using global variables
+</violation>
+<violation beginline="77" endline="77" begincolumn="1" endcolumn="23" rule="GlobalVariable" ruleset="Basic Ecmascript" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-javascript/rules/ecmascript/basic.html#GlobalVariable" priority="1">
+Avoid using global variables
+</violation>
+<violation beginline="78" endline="78" begincolumn="1" endcolumn="17" rule="GlobalVariable" ruleset="Basic Ecmascript" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-javascript/rules/ecmascript/basic.html#GlobalVariable" priority="1">
+Avoid using global variables
+</violation>
+<violation beginline="79" endline="79" begincolumn="1" endcolumn="41" rule="GlobalVariable" ruleset="Basic Ecmascript" externalInfoUrl="http://pmd.sourceforge.net/snapshot/pmd-javascript/rules/ecmascript/basic.html#GlobalVariable" priority="1">
+Avoid using global variables
+</violation>
+</file>
+</pmd>
