@@ -8,10 +8,17 @@ var wordsTrie = new Trie();
 for(var i = 0; i < words.length; i++) {
 	wordsTrie.add(words[i]);
 }
-console.log(wordsTrie.lookup("a"));
 app.get("/", function(req, res) {
 	res.send(fs.readFileSync("./public/index.html", {encoding: 'utf8'}));
 });
+app.get("/lookup", function(req, res) {
+	if(!req.query.q) {
+		res.status(400).send("Bad Request");
+		return;
+	}
+	var results = wordsTrie.lookup(req.query.q);
+	res.send(results);
+})
 app.use('/', express.static(__dirname+'/public'));
 app.use(function(error, req, res, next) {
 	var err = JSON.stringify(error);
