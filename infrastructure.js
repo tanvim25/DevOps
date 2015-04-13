@@ -1,8 +1,8 @@
 var http      = require('http');
 var httpProxy = require('http-proxy');
 
-var GREEN = 'http://127.0.0.1:5060';
-var BLUE  = 'http://127.0.0.1:9090';
+var GREEN = 'http://52.10.3.226:3000';
+var BLUE  = 'http://54.148.142.135:3000';
 
 var TARGET = GREEN;
 
