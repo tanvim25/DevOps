@@ -3,6 +3,8 @@ var Trie = require("./trie.js").Trie;
 var app = express();
 var fs = require("fs");
 
+var serverErrors = [];
+
 var words = JSON.parse(fs.readFileSync("./public/words.json"));
 var wordsTrie = new Trie();
 for(var i = 0; i < words.length; i++) {
@@ -16,13 +18,21 @@ app.get("/lookup", function(req, res) {
 		res.status(400).send("Bad Request");
 		return;
 	}
+	here();
 	var results = wordsTrie.lookup(req.query.q);
 	res.send(results);
+});
+app.get("/status", function(req, res) {
+	var appStatus = {
+		errors: serverErrors,
+		responseTimes: []
+	};
+	res.send(appStatus);
 })
 app.use('/', express.static(__dirname+'/public'));
 app.use(function(error, req, res, next) {
-	var err = JSON.stringify(error);
-	res.status(500).send('500: Internal Server Error <br/>' + err);
+	serverErrors.push(error.toString());
+	res.status(500).send('500: Internal Server Error');
 });
 app.listen(3000, function() {
 	console.log("Server listening on port 3000");
