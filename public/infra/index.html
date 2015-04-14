@@ -8,6 +8,13 @@
 	</head>
 	<script>
 		$(function() {
+			var responseTimeThreshold = 2000;
+			var responseTimeMax = 3000;
+			
+			//Response time logic
+			$(".thresholdPartition").css("left", (2000/3000)*500);
+			
+			//Get request for canary status
 			$.ajax({
 				url: "/infra/canary"
 			}).done(function(data) {
@@ -18,6 +25,8 @@
 				if(data.errors.length === 0) {
 					$("#canaryErrors").after("<h6>None</h6>");
 					$(".canaryStatus").css("background-color", "green");
+					
+					$(".responseBox").css("width", "100px");
 				}
 			});
 		});
@@ -29,8 +38,15 @@
 		<div class="main">
 			<div class="canaryCard">
 				<span class="canaryStatus"></span>
-				<h2 style="margin-top:0">Canary Status</h2>
+				<h2>Canary Status</h2>
 				<h4 id="canaryErrors">Errors</h4>
+				<h4 id="canaryReponse">Response time</h4>
+				<div class="responseTimeCont">
+					<div class="mainBox">
+						<div class="responseBox"></div>
+					</div>
+					<div class="thresholdPartition"></div>
+				</div>
 			</div>
 		</div>
 	</body>

@@ -23,13 +23,42 @@ body {
 	width: 700px;
 	position: relative;
 }
+.canaryCard > h2 {
+	margin-top: 0;
+	border-bottom: 1px solid gray;
+	padding-bottom: 10px;
+}
 .canaryStatus {
 	position: absolute;
-	top: 10px;
+	top: 15px;
 	right: 10px;
 	width: 20px;
 	height: 20px;
 	border-radius: 20px;
 	display: inline-block;
 	background-color: grey;
+}
+.responseTimeCont {
+	position: relative;
+	padding: 20px 0;
+}
+.responseTimeCont .mainBox {
+	border: 1px solid black;
+	width: 500px;
+	height: 20px;
+}
+.responseTimeCont .responseBox {
+	background-color: green;
+	height: 100%;
+	width: 0;
+	transition: 0.5s width ease-out;
+	-webkit-transition: 0.5s width ease-out;
+}
+.responseTimeCont .thresholdPartition {
+	position: absolute;
+	top: 5px;
+	left: 400px;
+	height: 50px;
+	width: 1px;
+	background-color: gray;
 }
