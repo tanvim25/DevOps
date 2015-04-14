@@ -17,20 +17,24 @@ app.get("/", function(req, res) {
 });
 
 // Lookup route
+var avgTime;
 app.get("/lookup", function(req, res) {
 	if(!req.query.q) {
 		res.status(400).send("Bad Request");
 		return;
 	}
+	var startTime = new Date();
 	var results = wordsTrie.lookup(req.query.q);
 	res.send(results);
+	var endTime = new Date();
+	avgTime = !avgTime ? (endTime - startTime) : ((endTime - startTime) + avgTime) / 2;
 });
 
 // Status route
 app.get("/status", function(req, res) {
 	var appStatus = {
 		errors: serverErrors,
-		responseTimes: []
+		responseTimes: avgTime
 	};
 	res.send(appStatus);
 })
