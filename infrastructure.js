@@ -23,12 +23,22 @@ app.use(session({
 }));
 
 // Proxy every xth user to the canary, others to main
+var userId = 1;
 app.use(function(req, res, next) {
-	req.session.abc = true;
-	proxy.web( req, res, {target: MAIN }, function(err){
-		console.log("Proxy error");
-		console.log(err);
-	});
+	req.session.userid = req.session.userid || userId++;
+	//Set "forceCanary" cookie to true to forcibly enable forwarding to canary
+	if(req.cookies.forceCanary || req.session.userid % 3 === 0) {
+		proxy.web( req, res, {target: CANARY }, function(err){
+			console.log("Proxy error");
+			console.log(err);
+		});
+	}
+	else {
+		proxy.web( req, res, {target: MAIN }, function(err){
+			console.log("Proxy error");
+			console.log(err);
+		});
+	}
 });
 
 // Server setup
