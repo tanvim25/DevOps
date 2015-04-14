@@ -18,7 +18,6 @@ app.get("/lookup", function(req, res) {
 		res.status(400).send("Bad Request");
 		return;
 	}
-	here();
 	var results = wordsTrie.lookup(req.query.q);
 	res.send(results);
 });
