@@ -1,7 +1,10 @@
 <html>
 	<head>
 		<title>Infrastructure Status</title>
+		<link rel="stylesheet" type="text/css" href="lib/bootstrap-3.3.4-dist/css/bootstrap.min.css" />
+		<link rel="stylesheet" type="text/css" href="infra.css" />
 		<script type="text/javascript" src="lib/jquery-1.11.2.min.js"></script>
+		<script type="text/javascript" src="lib/bootstrap-3.3.4-dist/js/bootstrap.min.js"></script>
 	</head>
 	<script>
 		$(function() {
@@ -14,13 +17,21 @@
 				}
 				if(data.errors.length === 0) {
 					$("#canaryErrors").after("<h6>None</h6>");
+					$(".canaryStatus").css("background-color", "green");
 				}
-			})
-		})
+			});
+		});
 	</script>
 	<body>
-		<h2>Infrastructure Status</h2>
-		<h4>Canary Status</h4>
-		<ul id="canaryErrors"></ul>
+		<div class="page-header">
+			<h1>Infrastructure Status</h1>
+		</div>
+		<div class="main">
+			<div class="canaryCard">
+				<span class="canaryStatus"></span>
+				<h2 style="margin-top:0">Canary Status</h2>
+				<h4 id="canaryErrors">Errors</h4>
+			</div>
+		</div>
 	</body>
 </html>
