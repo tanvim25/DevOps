@@ -1,0 +1,67 @@
+#---
+- hosts: all
+  sudo: yes
+  tasks:
+  - name: install node
+    apt: update_cache=yes name={{ item }} state=present
+    with_items:
+      - nodejs
+      - npm
+
+  - name: Create Directory
+    file: path=/app state=directory
+  
+  - name: run npm install 
+    npm: name={{ item }} path=/app state=latest
+    with_items:
+      - express
+      - express-session
+      - http-proxy
+      - cookie-parser
+      - json-stable-stringify
+      - forever
+
+- hosts: infra
+  sudo: yes
+  tasks:
+  - name: copy project files
+    copy: src=/home/vagrant/app/ dest=/app
+
+  - name: "Check list of Node.js apps running."
+    command: forever list
+    register: forever_list
+    changed_when: false
+
+  - name: "Start example Node.js app."
+    command: chdir=/app forever start infrastructure.js
+    when: "forever_list.stdout.find('infrastructure.js') == -1"
+
+- hosts: app
+  sudo: yes
+  tasks:
+  - name: copy project files
+    copy: src=/home/vagrant/app/ dest=/app
+
+  - name: "Check list of Node.js apps running."
+    command: forever list
+    register: forever_list
+    changed_when: false
+
+  - name: "Start example Node.js app."
+    command: chdir=/app forever start server.js
+    when: "forever_list.stdout.find('/app/server.js') == -1"
+
+- hosts: canary
+  sudo: yes
+  tasks:
+  - name: copy project files
+    copy: src=/home/vagrant/app_canary/ dest=/app
+
+  - name: "Check list of Node.js apps running."
+    command: forever list
+    register: forever_list
+    changed_when: false
+
+  - name: "Start example Node.js app."
+    command: chdir=/app forever start server.js
+    when: "forever_list.stdout.find('/app/server.js') == -1"
