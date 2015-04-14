@@ -9,6 +9,7 @@ var express = require('express');
 var app = express();
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
+var request = require('request');
 
 // Proxy server
 var options = {};
@@ -21,6 +22,19 @@ app.use(session({
 	resave: false,
 	saveUninitialized: false
 }));
+
+// Canary status endpoint
+app.get("/infra/canary", function(req, res){
+	request({
+		url: CANARY + "/status"
+	}, function(err, resp, body) {
+		res.send(body);
+	})
+});
+
+// Infra related static files
+app.use('/infra', express.static(__dirname+'/public/infra'));
+app.use('/infra/lib', express.static(__dirname+'/public/lib'));
 
 // Proxy every xth user to the canary, others to main
 var userId = 1;

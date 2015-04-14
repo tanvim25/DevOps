@@ -1,0 +1,26 @@
+<html>
+	<head>
+		<title>Infrastructure Status</title>
+		<script type="text/javascript" src="lib/jquery-1.11.2.min.js"></script>
+	</head>
+	<script>
+		$(function() {
+			$.ajax({
+				url: "/infra/canary"
+			}).done(function(data) {
+				data = JSON.parse(data);
+				for(var i = 0; i < data.errors.length; i++) {
+					$("#canaryErrors").append("<li>" + data.errors[i] + "</li>");
+				}
+				if(data.errors.length === 0) {
+					$("#canaryErrors").after("<h6>None</h6>");
+				}
+			})
+		})
+	</script>
+	<body>
+		<h2>Infrastructure Status</h2>
+		<h4>Canary Status</h4>
+		<ul id="canaryErrors"></ul>
+	</body>
+</html>
