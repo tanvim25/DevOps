@@ -1,0 +1,77 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<project>
+  <actions/>
+  <description></description>
+  <keepDependencies>false</keepDependencies>
+  <properties/>
+  <scm class="hudson.plugins.git.GitSCM" plugin="git@2.3.5">
+    <configVersion>2</configVersion>
+    <userRemoteConfigs>
+      <hudson.plugins.git.UserRemoteConfig>
+        <url>file:///home/vagrant/project</url>
+      </hudson.plugins.git.UserRemoteConfig>
+    </userRemoteConfigs>
+    <branches>
+      <hudson.plugins.git.BranchSpec>
+        <name>*/master</name>
+      </hudson.plugins.git.BranchSpec>
+    </branches>
+    <doGenerateSubmoduleConfigurations>false</doGenerateSubmoduleConfigurations>
+    <submoduleCfg class="list"/>
+    <extensions/>
+  </scm>
+  <canRoam>true</canRoam>
+  <disabled>false</disabled>
+  <blockBuildWhenDownstreamBuilding>false</blockBuildWhenDownstreamBuilding>
+  <blockBuildWhenUpstreamBuilding>false</blockBuildWhenUpstreamBuilding>
+  <triggers/>
+  <concurrentBuild>false</concurrentBuild>
+  <builders>
+    <hudson.tasks.Shell>
+      <command>cd $WORKSPACE
+npm install
+node node_modules/grunt-cli/bin/grunt
+sudo mkdir -p /home/vagrant/app
+sudo cp -r infrastructure.js server.js package.json public/ /home/vagrant/app
+
+</command>
+    </hudson.tasks.Shell>
+  </builders>
+  <publishers>
+    <hudson.plugins.pmd.PmdPublisher plugin="pmd@3.40">
+      <healthy></healthy>
+      <unHealthy></unHealthy>
+      <thresholdLimit>low</thresholdLimit>
+      <pluginName>[PMD] </pluginName>
+      <defaultEncoding></defaultEncoding>
+      <canRunOnFailed>false</canRunOnFailed>
+      <usePreviousBuildAsReference>false</usePreviousBuildAsReference>
+      <useStableBuildAsReference>false</useStableBuildAsReference>
+      <useDeltaValues>false</useDeltaValues>
+      <thresholds plugin="analysis-core@1.70">
+        <unstableTotalAll></unstableTotalAll>
+        <unstableTotalHigh>1</unstableTotalHigh>
+        <unstableTotalNormal>3</unstableTotalNormal>
+        <unstableTotalLow></unstableTotalLow>
+        <failedTotalAll></failedTotalAll>
+        <failedTotalHigh>1</failedTotalHigh>
+        <failedTotalNormal>3</failedTotalNormal>
+        <failedTotalLow></failedTotalLow>
+      </thresholds>
+      <shouldDetectModules>false</shouldDetectModules>
+      <dontComputeNew>true</dontComputeNew>
+      <doNotResolveRelativePaths>true</doNotResolveRelativePaths>
+      <pattern></pattern>
+    </hudson.plugins.pmd.PmdPublisher>
+    <hudson.tasks.BuildTrigger>
+      <childProjects>ansible</childProjects>
+      <threshold>
+        <name>SUCCESS</name>
+        <ordinal>0</ordinal>
+        <color>BLUE</color>
+        <completeBuild>true</completeBuild>
+      </threshold>
+    </hudson.tasks.BuildTrigger>
+  </publishers>
+  <buildWrappers/>
+</project>
