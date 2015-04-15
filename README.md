@@ -204,4 +204,5 @@ To demonstrate, we are randomly introducing errors and increasing lookup respons
 
 The status of the canary can be view on the [status page](http://ec2-54-68-52-246.us-west-2.compute.amazonaws.com:3000/infra/)
 ![Status Page](https://raw.githubusercontent.com/tanvim25/DevOps/master/pics/Canary%20Status.jpg)
+
 If the canary reports any errors, the infrastructure server stops routing to the canary and only routes to the main application.
