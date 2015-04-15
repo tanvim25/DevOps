@@ -191,3 +191,17 @@ Please note that only the code and libraries which are necessary to run the appl
 
 The application code is deployed on both the proxy server and the application server, while the canary version is deployed on the canary server. It is the job of proxy server to redirect every third user to the canary server and rest of the requests to the application server.
  
+##Canary
+The canary version of the application has experimental features that we do not wish to roll out to all users at the same time. Specifically we have moved the client side autocomplete to server side.
+
+To facilitate a selective rollout, the [infrastructure](https://github.com/tanvim25/DevOps/blob/master/infrastructure.js) module redirects every 3rd user to the canary using user sessions. To aid with testing, if the flag *forceCanary* is *true* in the request cookies, this will force a redirect to the canary application.
+
+#### Canary Monitoring
+We are monitoring 2 metrics of the canary version of the application
+* Server errors
+* Response time of lookup
+To demonstrate, we are randomly introducing errors and increasing lookup response times.
+
+The status of the canary can be view on the [status page](http://ec2-54-68-52-246.us-west-2.compute.amazonaws.com:3000/infra/)
+
+If the canary reports any errors, the infrastructure server stops routing to the canary and only routes to the main application.
