@@ -166,3 +166,28 @@ Jenkins has a [Static Analysis Collector PMD plugin](https://wiki.jenkins-ci.org
 Using the PMD plug-in, we have configured our Devops job to fail if more than 1 high priority errors are reported by PMD. These values are configurable based on the priorities of the errors and warnings.
 
 ![Jenkins-PMD](https://github.com/tanvim25/DevOps/blob/master/pics/jenkins-gate.JPG)
+
+
+##Deployment
+We have used [Ansible](http://www.ansible.com/home) to configure the deployment environment.
+The ansible is setup on a local VM where the build server also resides. We have added three seperate jobs in Jenkins- one job for our application, another job for the canary version of the application and third job for triggering Ansible. 
+
+![Jenkins Job](https://github.com/tanvim25/DevOps/blob/master/pics/JenkinsJobs.JPG)
+
+A post-build action is added to both application and canary jobs so as to trigger ansible job when the build is successful. Ansible job simply runs the playbook using the 
+pem file.
+
+    sudo ansible-playbook -u ubuntu $source/playbooks/deploy.yml --private-key $source/.ssh/Tanvi.pem 
+
+###Automatic Deployment
+We have deployed our application on three AWS EC2 instances.
+
+1. [Proxy server](http://ec2-54-68-52-246.us-west-2.compute.amazonaws.com:3000/) 
+2. [Application Server](http://ec2-52-10-3-226.us-west-2.compute.amazonaws.com:3000) 
+3. [Canary Server](http://ec2-54-148-142-135.us-west-2.compute.amazonaws.com:3000) 
+
+We have written an ansible playbook called [deploy.yml](https://github.com/tanvim25/DevOps/blob/master/deploy.yml) which configures these instances with software required to run the application. The project files are copied from ansible master to these aws instances and node processes are started using [forever](https://www.npmjs.com/package/forever). 
+Please note that only the code and libraries which are necessary to run the application are copied onto the deployment servers. Rest of the dev dependencies are not copied.
+
+The application code is deployed on both the proxy server and the application server, while the canary version is deployed on the canary server. It is the job of proxy server to redirect every third user to the canary server and rest of the requests to the application server.
+ 
