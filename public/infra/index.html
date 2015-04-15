@@ -18,7 +18,6 @@
 			$.ajax({
 				url: "/infra/canary"
 			}).done(function(data) {
-				data = JSON.parse(data);
 				for(var i = 0; i < data.errors.length; i++) {
 					$("#canaryErrors").append("<li>" + data.errors[i] + "</li>");
 				}
@@ -31,6 +30,9 @@
 				}
 				
 				$(".responseBox").css("width", ((data.responseTimes/responseTimeMax)*500) + "px");
+				if(data.canaryRoute) {
+					
+				}
 			});
 		});
 	</script>
@@ -41,7 +43,9 @@
 		<div class="main">
 			<div class="canaryCard">
 				<span class="canaryStatus"></span>
-				<h2>Canary Status</h2>
+				<div class="cardHeader">
+					<span class="cardTitle">Canary Status</span>
+				</div>
 				<h4 id="canaryErrors">Errors</h4>
 				<h4 id="canaryReponse">Response time</h4>
 				<div class="responseTimeCont">
