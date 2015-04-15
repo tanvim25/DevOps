@@ -4,6 +4,8 @@ var httpProxy = require('http-proxy');
 // Main and canary server addresses. Should probably be moved to config
 var MAIN = 'http://ec2-52-10-3-226.us-west-2.compute.amazonaws.com:3000';
 var CANARY  = 'http://ec2-54-148-142-135.us-west-2.compute.amazonaws.com:3000';
+var canaryRoute = true;
+
 
 var express = require('express');
 var app = express();
@@ -28,7 +30,12 @@ app.get("/infra/canary", function(req, res){
 	request({
 		url: CANARY + "/status"
 	}, function(err, resp, body) {
-		res.send(body);
+		var response = JSON.parse(body);
+		if(response.errors.length > 0) {
+			canaryRoute = false;
+		}
+		response.canaryRoute = canaryRoute;
+		res.send(response);
 	})
 });
 
@@ -41,7 +48,7 @@ var userId = 1;
 app.use(function(req, res, next) {
 	req.session.userid = req.session.userid || userId++;
 	//Set "forceCanary" cookie to true to forcibly enable forwarding to canary
-	if(req.cookies.forceCanary || req.session.userid % 3 === 0) {
+	if(canaryRoute && (req.cookies.forceCanary || req.session.userid % 3 === 0)) {
 		proxy.web( req, res, {target: CANARY }, function(err){
 			console.log("Proxy error");
 			console.log(err);
