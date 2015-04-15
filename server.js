@@ -23,11 +23,19 @@ app.get("/lookup", function(req, res) {
 		res.status(400).send("Bad Request");
 		return;
 	}
+	
+	//Introducing random server errors
+	if(Math.random() < 0.2)
+		next();
+	
 	var startTime = new Date();
-	var results = wordsTrie.lookup(req.query.q);
-	res.send(results);
-	var endTime = new Date();
-	avgTime = !avgTime ? (endTime - startTime) : ((endTime - startTime) + avgTime) / 2;
+	//Random response times
+	setTimeout(function() {
+		var results = wordsTrie.lookup(req.query.q);
+		res.send(results);
+		var endTime = new Date();
+		avgTime = !avgTime ? (endTime - startTime) : ((endTime - startTime) + avgTime) / 2;
+	}, Math.random() * 10);
 });
 
 // Status route
