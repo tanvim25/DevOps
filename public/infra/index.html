@@ -8,11 +8,11 @@
 	</head>
 	<script>
 		$(function() {
-			var responseTimeThreshold = 15;
-			var responseTimeMax = 20;
+			var responseTimeThreshold = 20;
+			var responseTimeMax = 30;
 			
 			//Response time logic
-			$(".thresholdPartition").css("left", (2000/3000)*500);
+			$(".thresholdPartition").css("left", (responseTimeThreshold/responseTimeMax)*500);
 			
 			//Get request for canary status
 			$.ajax({
@@ -29,9 +29,16 @@
 					$(".canaryStatus").css("background-color", "red");
 				}
 				
-				$(".responseBox").css("width", ((data.responseTimes/responseTimeMax)*500) + "px");
+				var boxWidth = (data.responseTimes < responseTimeMax) ? ((data.responseTimes/responseTimeMax)*500) + "px" : "498px";
+				$(".responseBox").css("width", boxWidth);
+				if(data.responseTimes >= responseTimeThreshold) {
+					$(".responseBox").css("background-color", "red");
+				}
 				if(data.canaryRoute) {
-					
+					$(".cardTitle").after("<span class='routeStatus'>Routing</span>");
+				}
+				else {
+					$(".cardTitle").after("<span class='routeStatus' style='color:red'>Not Routing</span>");
 				}
 			});
 		});
@@ -46,7 +53,8 @@
 				<div class="cardHeader">
 					<span class="cardTitle">Canary Status</span>
 				</div>
-				<h4 id="canaryErrors">Errors</h4>
+				<h4>Errors</h4>
+				<ul id="canaryErrors"></ul>
 				<h4 id="canaryReponse">Response time</h4>
 				<div class="responseTimeCont">
 					<div class="mainBox">

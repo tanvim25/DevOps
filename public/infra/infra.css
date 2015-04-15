@@ -28,6 +28,17 @@ body {
 	border-bottom: 1px solid gray;
 	padding-bottom: 10px;
 }
+.canaryCard .cardHeader {
+	border-bottom: 1px solid grey;
+}
+.canaryCard .cardTitle {
+	font-size: 26px;
+	margin-right: 20px;
+}
+.canaryCard .routeStatus {
+	font-size: 18px;
+	color: green;
+}
 .canaryStatus {
 	position: absolute;
 	top: 15px;
