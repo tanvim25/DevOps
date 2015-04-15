@@ -8,8 +8,8 @@
 	</head>
 	<script>
 		$(function() {
-			var responseTimeThreshold = 2000;
-			var responseTimeMax = 3000;
+			var responseTimeThreshold = 15;
+			var responseTimeMax = 20;
 			
 			//Response time logic
 			$(".thresholdPartition").css("left", (2000/3000)*500);
@@ -25,9 +25,12 @@
 				if(data.errors.length === 0) {
 					$("#canaryErrors").after("<h6>None</h6>");
 					$(".canaryStatus").css("background-color", "green");
-					
-					$(".responseBox").css("width", "100px");
 				}
+				else {
+					$(".canaryStatus").css("background-color", "red");
+				}
+				
+				$(".responseBox").css("width", ((data.responseTimes/responseTimeMax)*500) + "px");
 			});
 		});
 	</script>
