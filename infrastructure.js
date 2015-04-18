@@ -4,6 +4,7 @@ var httpProxy = require('http-proxy');
 // Main and canary server addresses. Should probably be moved to config
 var MAIN = 'http://ec2-52-10-3-226.us-west-2.compute.amazonaws.com:3000';
 var CANARY  = 'http://ec2-54-148-142-135.us-west-2.compute.amazonaws.com:3000';
+var GHOST = "http://localhost:3000";
 var canaryRoute = true;
 
 
@@ -39,6 +40,16 @@ app.get("/infra/canary", function(req, res){
 	})
 });
 
+app.get("/infra/ghost", function(req, res){
+	request({
+		url: GHOST + "/status"
+	}, function(err, resp, body) {
+		console.log(body);
+		var response = JSON.parse(body);
+		res.send(response);
+	})
+});
+
 // Infra related static files
 app.use('/infra', express.static(__dirname+'/public/infra'));
 app.use('/infra/lib', express.static(__dirname+'/public/lib'));
@@ -55,7 +66,7 @@ app.use(function(req, res, next) {
 		});
 		if(req.path === "/") {
 			request({
-				url: "http://localhost:3000/start",
+				url: GHOST + "/start",
 				qs: {url: req.url}
 			});
 		}
