@@ -13,6 +13,11 @@ var app = express();
 var cookieParser = require('cookie-parser');
 var session = require('express-session');
 var request = require('request');
+var bodyParser = require('body-parser');
+app.use( bodyParser.json() );       // to support JSON-encoded bodies
+app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
+  extended: true
+})); 
 
 // Proxy server
 var options = {};
@@ -38,6 +43,16 @@ app.get("/infra/canary", function(req, res){
 		response.canaryRoute = canaryRoute;
 		res.send(response);
 	})
+});
+
+app.post("/infra/event", function(req, res){
+	request({
+		url: GHOST + "/event",
+		method: "POST",
+		body: req.body,
+		json: true
+	});
+	res.send("OK");
 });
 
 app.get("/infra/ghost", function(req, res){
