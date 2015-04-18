@@ -53,6 +53,12 @@ app.use(function(req, res, next) {
 			console.log("Proxy error");
 			console.log(err);
 		});
+		if(req.path === "/") {
+			request({
+				url: "http://localhost:3000/start",
+				qs: {url: req.url}
+			});
+		}
 	}
 	else {
 		proxy.web( req, res, {target: MAIN }, function(err){
@@ -63,8 +69,8 @@ app.use(function(req, res, next) {
 });
 
 // Server setup
-app.listen(3000, function() {
-	console.log("Infrastructure listening on port 3000");
+app.listen(8080, function() {
+	console.log("Infrastructure listening on port 8080");
 });
 
 // Basic signal handlers
