@@ -55,3 +55,4 @@ app.controller("autoCompleteCtrl", ["$scope", "$http", function($scope, $http){
 	     }
 	Trie();
 }]);
+doSomething();
