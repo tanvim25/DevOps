@@ -14,6 +14,7 @@ var phPage;
 app.get("/start", function(req, res) {
 	if(!req.query.url)
 		res.status(400).send("Bad Request !");
+	console.log("Starting Phantomjs client");
 	createPhantom(req.query.url);
 	res.send("OK");
 });
@@ -23,17 +24,21 @@ app.get("/status", function(req, res) {
 });
 
 app.post("/event", function(req, res) {
+	console.log(req.body);
+	phPage.evaluate(function() {
+	});
 	res.send("OK");
 });
 
-app.listen(3000, function() {
-	console.log("Listening on port 3000");
+app.listen(3001, function() {
+	console.log("Listening on port 3001");
 });
 
 function createPhantom(url) {
 	phantom.create(function (ph) {
 		ph.createPage(function (page) {
 			phPage = page;
+			console.log("Pointing client to URL: " + CANARY + url);
 			page.onError(function(msg, trace) {
 
 				var msgStack = ['ERROR: ' + msg];
@@ -51,7 +56,8 @@ function createPhantom(url) {
 				});
 			});
 			page.open(CANARY + url, function (status) {
-				
+				console.log(status);
+				page.injectJs("public/lib/jquery-1.11.2.min.js");
 			});
 		});
 	});
