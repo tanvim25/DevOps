@@ -28,6 +28,10 @@ app.controller("autoCompleteCtrl", ["$scope", "$http", function($scope, $http){
 		var element = cssPath(arg.srcElement);
 		$http.post('/infra/event', {data: {type: "click", elem: element}})	
 	})
+	document.addEventListener("keyup",function(arg){
+		var element = cssPath(arg.srcElement);
+		$http.post('/infra/event', {data: {type: "keyup", elem: element, val: element.value}})	
+	})
 	var cssPath = function(el) {
 	        if (!(el instanceof Element)) 
 	            return;
