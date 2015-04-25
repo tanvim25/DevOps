@@ -6,7 +6,7 @@ app.use( bodyParser.json() );       // to support JSON-encoded bodies
 app.use(bodyParser.urlencoded({     // to support URL-encoded bodies
   extended: true
 })); 
-var CANARY  = 'http://ec2-54-148-142-135.us-west-2.compute.amazonaws.com:3000';
+var CANARY  = 'http://localhost:3000';
 
 var errors = [];
 var phPage;
@@ -25,8 +25,12 @@ app.get("/status", function(req, res) {
 
 app.post("/event", function(req, res) {
 	console.log(req.body);
-	phPage.evaluate(function() {
-	});
+	phPage.evaluate(function(evt) {
+		if(evt.type === "keyup")
+			$(evt.elem).val(evt.val);
+		$(evt.elem).trigger(evt.type);
+	}, function(result){
+	}, req.body.data);
 	res.send("OK");
 });
 
