@@ -209,7 +209,7 @@ The status of the canary can be view on the [status page](http://ec2-54-68-52-24
 If the canary reports any errors, the infrastructure server stops routing to the canary and only routes to the main application.
 
 ## Special Milestone
-The purpose of our special milestone was to extend the canary version of our application to log ot only server side errors but also client side Javascript errors.
+The purpose of our special milestone was to extend the canary version of our application to log not only server side errors but also client side Javascript errors.
 
 This was achieved using PhantomJs - a headless browser process - to spawn ghost clients everytime a user was served a canary version of the application. The ghost version of the application would request for the same page the client requested for and also be notified of when the real client performs user actions. This is so that whenever the client gets an error due to some user action, the ghost should get the same error as well.
 
@@ -218,7 +218,7 @@ This was achieved using PhantomJs - a headless browser process - to spawn ghost 
 #### Implementation
 PhantomJs was deployed on a separate node controlled by a simple NodeJs server. This node is only accessible to the infrastructure node. PhantomJs is driven via a Node-Phantom [bridge](https://github.com/sgentle/phantomjs-node). The node server receives commands (like start, event) from the infrastructure node and uses them to drive the PhantomJs instance.
 
-On the cient, along with every page, additional javascript is served by the canary to enable event capturing and forwarding. This is done using simple event listeners on the body and making Ajax requests to the infrastructure node with the event information. The infrastructure node merely forwards the event to the ghost.
+On the client, along with every page, additional javascript is served by the canary to enable event capturing and forwarding. This is done using simple event listeners on the body and making Ajax requests to the infrastructure node with the event information. The infrastructure node merely forwards the event to the ghost.
 
 When there is an error on the client, there will be an identical error on the ghost as well. The errors can be logged and reported.
 
