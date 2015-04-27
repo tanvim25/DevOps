@@ -216,8 +216,8 @@ This was achieved using PhantomJs - a headless browser process - to spawn ghost 
 ![Special Milestone](https://raw.githubusercontent.com/tanvim25/DevOps/master/pics/Special.gif)
 
 #### Installation
-The implementation of the special milestone requires [PhantomJs](http://phantomjs.org/) to be installed. The instalation steps can be found on the site. For ubuntu, we have found that using pre-built binaries is much faster.  
-Below is a script to install PhantomJs for a ubuntu node
+The implementation of the special milestone requires [PhantomJs](http://phantomjs.org/) to be installed. The installation steps can be found on the site. For ubuntu, we have found that using pre-built binaries is much faster.  
+Below is a script to install PhantomJs for an ubuntu node
 ```script
 wget https://bitbucket.org/ariya/phantomjs/downloads/phantomjs-1.9.8-linux-i686.tar.bz2
 mkdir phantomjs
